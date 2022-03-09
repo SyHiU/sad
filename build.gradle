@@ -1,0 +1,60 @@
+plugins {
+    id 'java'
+    id 'jacoco'
+    id 'pmd'
+    id 'checkstyle'
+}
+
+group 'com.datamify'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+}
+
+test {
+    useJUnitPlatform()
+    finalizedBy jacocoTestReport
+}
+
+jacocoTestReport {
+    dependsOn test
+    reports {
+        html.required = true
+    }
+}
+
+jacocoTestCoverageVerification {
+    violationRules {
+        rule {
+            limit {
+                minimum = 0.8
+            }
+        }
+    }
+}
+
+pmd {
+    consoleOutput = true
+    toolVersion = "6.21.0"
+    rulesMinimumPriority = 5
+}
+
+checkstyle {
+    toolVersion '8.40'
+    ignoreFailures true
+}
+
+tasks.withType(Checkstyle) {
+    reports {
+        xml.required = true
+        html.required = true
+    }
+}
+
+check.dependsOn jacocoTestCoverageVerification
