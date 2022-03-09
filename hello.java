@@ -5,6 +5,6 @@ class HelloWorld {
         System.out.println("Hello, World!");  
     }
     public boolean a(){
-        return true; 
+        return true;  
     }
 }
