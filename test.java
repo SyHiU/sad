@@ -11,10 +11,10 @@ class ElementTest {
     void shouldTestAddElement() {
         final Element firstElement = new Element(5);
         final Element secondElement = new Element(7);
-        final helloword 
+        final helloworld hello = new helloworld();  
 
-        boolean resultElement = firstElement.add(secondElement);
-        assertEquals(resultElement.getValue(), 12);
+        boolean resultElement = hello.a();
+        assertEquals(resultElement, true);
     }
 
 }
